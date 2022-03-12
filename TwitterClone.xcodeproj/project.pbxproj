@@ -48,6 +48,10 @@
 		E1CDF74F27DCC760006AEF33 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = E1CDF74E27DCC760006AEF33 /* Kingfisher */; };
 		E1CDF75127DCCEB6006AEF33 /* ExplorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CDF75027DCCEB6006AEF33 /* ExplorViewModel.swift */; };
 		E1CDF75327DCD17A006AEF33 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CDF75227DCD17A006AEF33 /* SearchBar.swift */; };
+		E1CDF75527DCD589006AEF33 /* TweetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CDF75427DCD589006AEF33 /* TweetService.swift */; };
+		E1CDF75827DCD6A4006AEF33 /* UploadTweetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CDF75727DCD6A4006AEF33 /* UploadTweetViewModel.swift */; };
+		E1CDF75A27DCDA3E006AEF33 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CDF75927DCDA3E006AEF33 /* FeedViewModel.swift */; };
+		E1CDF75C27DCDC65006AEF33 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CDF75B27DCDC65006AEF33 /* Tweet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +111,10 @@
 		E1CDF74B27DCBFFD006AEF33 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E1CDF75027DCCEB6006AEF33 /* ExplorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorViewModel.swift; sourceTree = "<group>"; };
 		E1CDF75227DCD17A006AEF33 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		E1CDF75427DCD589006AEF33 /* TweetService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetService.swift; sourceTree = "<group>"; };
+		E1CDF75727DCD6A4006AEF33 /* UploadTweetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadTweetViewModel.swift; sourceTree = "<group>"; };
+		E1CDF75927DCDA3E006AEF33 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
+		E1CDF75B27DCDC65006AEF33 /* Tweet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -238,6 +246,7 @@
 			children = (
 				E1CDF74627DCB7FE006AEF33 /* ImageUploader.swift */,
 				E1CDF74927DCBE2E006AEF33 /* UserService.swift */,
+				E1CDF75427DCD589006AEF33 /* TweetService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -246,6 +255,7 @@
 			isa = PBXGroup;
 			children = (
 				E1CDF74B27DCBFFD006AEF33 /* User.swift */,
+				E1CDF75B27DCDC65006AEF33 /* Tweet.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -276,6 +286,7 @@
 		E1CDF6F327DC6736006AEF33 /* VIewModels */ = {
 			isa = PBXGroup;
 			children = (
+				E1CDF75927DCDA3E006AEF33 /* FeedViewModel.swift */,
 			);
 			path = VIewModels;
 			sourceTree = "<group>";
@@ -417,6 +428,7 @@
 		E1CDF72027DC8444006AEF33 /* VIewModels */ = {
 			isa = PBXGroup;
 			children = (
+				E1CDF75727DCD6A4006AEF33 /* UploadTweetViewModel.swift */,
 			);
 			path = VIewModels;
 			sourceTree = "<group>";
@@ -619,6 +631,8 @@
 				E1CDF74A27DCBE2E006AEF33 /* UserService.swift in Sources */,
 				E1CDF74527DCB1DB006AEF33 /* ImagePicker.swift in Sources */,
 				E1CDF6C527DC6559006AEF33 /* ContentView.swift in Sources */,
+				E1CDF75C27DCDC65006AEF33 /* Tweet.swift in Sources */,
+				E1CDF75A27DCDA3E006AEF33 /* FeedViewModel.swift in Sources */,
 				E1CDF6F927DC6802006AEF33 /* TweetRowView.swift in Sources */,
 				E1CDF75127DCCEB6006AEF33 /* ExplorViewModel.swift in Sources */,
 				E1CDF74727DCB7FE006AEF33 /* ImageUploader.swift in Sources */,
@@ -629,6 +643,8 @@
 				E1CDF74227DCA907006AEF33 /* ProfilePhotoSelectorView.swift in Sources */,
 				E1CDF6C327DC6559006AEF33 /* TwitterCloneApp.swift in Sources */,
 				E1CDF70227DC6E6F006AEF33 /* ExploreView.swift in Sources */,
+				E1CDF75827DCD6A4006AEF33 /* UploadTweetViewModel.swift in Sources */,
+				E1CDF75527DCD589006AEF33 /* TweetService.swift in Sources */,
 				E1CDF71A27DC7973006AEF33 /* SideMenuViewModel.swift in Sources */,
 				E1CDF72527DC8576006AEF33 /* TextArea.swift in Sources */,
 				E1CDF75327DCD17A006AEF33 /* SearchBar.swift in Sources */,
