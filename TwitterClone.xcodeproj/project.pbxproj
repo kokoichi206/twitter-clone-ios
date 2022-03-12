@@ -40,6 +40,7 @@
 		E1CDF73C27DC93FA006AEF33 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = E1CDF73B27DC93FA006AEF33 /* FirebaseFirestoreSwift-Beta */; };
 		E1CDF73E27DC93FA006AEF33 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = E1CDF73D27DC93FA006AEF33 /* FirebaseStorage */; };
 		E1CDF74027DC9698006AEF33 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CDF73F27DC9698006AEF33 /* AuthViewModel.swift */; };
+		E1CDF74227DCA907006AEF33 /* ProfilePhotoSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CDF74127DCA907006AEF33 /* ProfilePhotoSelectorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +93,7 @@
 		E1CDF73227DC8E7F006AEF33 /* AuthHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthHeaderView.swift; sourceTree = "<group>"; };
 		E1CDF73427DC9324006AEF33 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		E1CDF73F27DC9698006AEF33 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		E1CDF74127DCA907006AEF33 /* ProfilePhotoSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoSelectorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -429,6 +431,7 @@
 			children = (
 				E1CDF72927DC8825006AEF33 /* LoginView.swift */,
 				E1CDF72B27DC882C006AEF33 /* RegistrationView.swift */,
+				E1CDF74127DCA907006AEF33 /* ProfilePhotoSelectorView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -589,6 +592,7 @@
 				E1CDF70C27DC73D1006AEF33 /* TweetFilterViewModel.swift in Sources */,
 				E1CDF6F627DC6753006AEF33 /* FeedView.swift in Sources */,
 				E1CDF71627DC7955006AEF33 /* SideMenuView.swift in Sources */,
+				E1CDF74227DCA907006AEF33 /* ProfilePhotoSelectorView.swift in Sources */,
 				E1CDF6C327DC6559006AEF33 /* TwitterCloneApp.swift in Sources */,
 				E1CDF70227DC6E6F006AEF33 /* ExploreView.swift in Sources */,
 				E1CDF71A27DC7973006AEF33 /* SideMenuViewModel.swift in Sources */,

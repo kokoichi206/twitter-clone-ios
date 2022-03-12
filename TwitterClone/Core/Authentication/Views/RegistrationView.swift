@@ -19,20 +19,29 @@ struct RegistrationView: View {
     var body: some View {
         
         VStack {
+            
+            // 写真を選択する画面を表示する契機
+            NavigationLink(destination: ProfilePhotoSelectorView(),
+                           isActive: $viewModel.didAuthenticateUser,
+                           label: { })
+            
             // Header
             AuthHeaderView(title1: "Get Started.", title2: "Create Your Account.")
 
             VStack(spacing: 40) {
                 CustomInputField(imageName: "envelope",
                                  placeholderText: "Email",
+                                 isSecureField: false,
                                  text: $email)
                 
                 CustomInputField(imageName: "person",
                                  placeholderText: "Username",
+                                 isSecureField: false,
                                  text: $username)
 
                 CustomInputField(imageName: "person",
                                  placeholderText: "Full name",
+                                 isSecureField: false,
                                  text: $fullname)
                 
                 CustomInputField(imageName: "lock",
