@@ -49,6 +49,10 @@ struct ContentView: View {
                 }
             }
         }
+        .onAppear {
+            // 元ページに戻った時にサイドメニューを閉じる
+            showMenu = false
+        }
     }
 }
 
