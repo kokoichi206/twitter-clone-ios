@@ -20,6 +20,16 @@ class AuthViewModel: ObservableObject {
     
     func login(withEmail email: String, password: String) {
         print("DEBUG: Login with email \(email)")
+        
+        Auth.auth().signIn(withEmail: email, password: password) { results, error in
+            if let error = error {
+                print("DEBUG: Failed to sign in with error \(error.localizedDescription)")
+                return
+            }
+            
+            guard let user = results?.user else { return }
+            self.userSession = user
+        }
     }
     
     func register(withEmail email: String, password: String, fullname: String, username: String) {
@@ -35,7 +45,7 @@ class AuthViewModel: ObservableObject {
             self.userSession = user
             
             print("DEBUG: Registered user successfully")
-            print("DEBUG: User is \(self.userSession)")
+            print("DEBUG: User is \(String(describing: self.userSession))")
             
             let data = ["email": email,
                         "username": username.lowercased(),
@@ -48,5 +58,10 @@ class AuthViewModel: ObservableObject {
                     print("DEBUG: Did upload user data..")
                 }
         }
+    }
+    
+    func signOut() {
+        userSession = nil
+        try? Auth.auth().signOut()
     }
 }
