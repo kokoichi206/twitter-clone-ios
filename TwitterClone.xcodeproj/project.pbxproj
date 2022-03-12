@@ -33,6 +33,7 @@
 		E1CDF72C27DC882C006AEF33 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CDF72B27DC882C006AEF33 /* RegistrationView.swift */; };
 		E1CDF72E27DC8954006AEF33 /* RoundedShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CDF72D27DC8954006AEF33 /* RoundedShape.swift */; };
 		E1CDF73027DC8C88006AEF33 /* CustomInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CDF72F27DC8C88006AEF33 /* CustomInputField.swift */; };
+		E1CDF73327DC8E7F006AEF33 /* AuthHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CDF73227DC8E7F006AEF33 /* AuthHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,7 @@
 		E1CDF72B27DC882C006AEF33 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		E1CDF72D27DC8954006AEF33 /* RoundedShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedShape.swift; sourceTree = "<group>"; };
 		E1CDF72F27DC8C88006AEF33 /* CustomInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputField.swift; sourceTree = "<group>"; };
+		E1CDF73227DC8E7F006AEF33 /* AuthHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,6 +229,7 @@
 		E1CDF6F227DC6706006AEF33 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				E1CDF73127DC8E74006AEF33 /* Authentication */,
 				E1CDF70F27DC7702006AEF33 /* Users */,
 				E1CDF6F727DC67C5006AEF33 /* Tweets */,
 				E1CDF72427DC8576006AEF33 /* TextArea.swift */,
@@ -416,6 +419,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		E1CDF73127DC8E74006AEF33 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				E1CDF73227DC8E7F006AEF33 /* AuthHeaderView.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -562,6 +573,7 @@
 				E1CDF72A27DC8825006AEF33 /* LoginView.swift in Sources */,
 				E1CDF72C27DC882C006AEF33 /* RegistrationView.swift in Sources */,
 				E1CDF72327DC8461006AEF33 /* NewTweetView.swift in Sources */,
+				E1CDF73327DC8E7F006AEF33 /* AuthHeaderView.swift in Sources */,
 				E1CDF72E27DC8954006AEF33 /* RoundedShape.swift in Sources */,
 				E1CDF71E27DC8098006AEF33 /* SideMenuOptionRowView.swift in Sources */,
 				E1CDF6FC27DC6DA2006AEF33 /* MainTabView.swift in Sources */,
