@@ -41,6 +41,7 @@
 		E1CDF73E27DC93FA006AEF33 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = E1CDF73D27DC93FA006AEF33 /* FirebaseStorage */; };
 		E1CDF74027DC9698006AEF33 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CDF73F27DC9698006AEF33 /* AuthViewModel.swift */; };
 		E1CDF74227DCA907006AEF33 /* ProfilePhotoSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CDF74127DCA907006AEF33 /* ProfilePhotoSelectorView.swift */; };
+		E1CDF74527DCB1DB006AEF33 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CDF74427DCB1DB006AEF33 /* ImagePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +95,7 @@
 		E1CDF73427DC9324006AEF33 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		E1CDF73F27DC9698006AEF33 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		E1CDF74127DCA907006AEF33 /* ProfilePhotoSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoSelectorView.swift; sourceTree = "<group>"; };
+		E1CDF74427DCB1DB006AEF33 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +150,7 @@
 		E1CDF6C127DC6559006AEF33 /* TwitterClone */ = {
 			isa = PBXGroup;
 			children = (
+				E1CDF74327DCB1CD006AEF33 /* Utils */,
 				E1CDF6EC27DC66D9006AEF33 /* Extensions */,
 				E1CDF6F027DC66ED006AEF33 /* Model */,
 				E1CDF6EF27DC66EB006AEF33 /* Service */,
@@ -444,6 +447,14 @@
 			path = Authentication;
 			sourceTree = "<group>";
 		};
+		E1CDF74327DCB1CD006AEF33 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				E1CDF74427DCB1DB006AEF33 /* ImagePicker.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -586,6 +597,7 @@
 			files = (
 				E1CDF70627DC6E8E006AEF33 /* MessagesView.swift in Sources */,
 				E1CDF70A27DC6F49006AEF33 /* ProfileView.swift in Sources */,
+				E1CDF74527DCB1DB006AEF33 /* ImagePicker.swift in Sources */,
 				E1CDF6C527DC6559006AEF33 /* ContentView.swift in Sources */,
 				E1CDF6F927DC6802006AEF33 /* TweetRowView.swift in Sources */,
 				E1CDF73027DC8C88006AEF33 /* CustomInputField.swift in Sources */,
