@@ -27,6 +27,8 @@
 		E1CDF71A27DC7973006AEF33 /* SideMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CDF71927DC7973006AEF33 /* SideMenuViewModel.swift */; };
 		E1CDF71C27DC7AD9006AEF33 /* UserStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CDF71B27DC7AD9006AEF33 /* UserStatsView.swift */; };
 		E1CDF71E27DC8098006AEF33 /* SideMenuOptionRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CDF71D27DC8098006AEF33 /* SideMenuOptionRowView.swift */; };
+		E1CDF72327DC8461006AEF33 /* NewTweetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CDF72227DC8461006AEF33 /* NewTweetView.swift */; };
+		E1CDF72527DC8576006AEF33 /* TextArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CDF72427DC8576006AEF33 /* TextArea.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +72,8 @@
 		E1CDF71927DC7973006AEF33 /* SideMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewModel.swift; sourceTree = "<group>"; };
 		E1CDF71B27DC7AD9006AEF33 /* UserStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStatsView.swift; sourceTree = "<group>"; };
 		E1CDF71D27DC8098006AEF33 /* SideMenuOptionRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuOptionRowView.swift; sourceTree = "<group>"; };
+		E1CDF72227DC8461006AEF33 /* NewTweetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTweetView.swift; sourceTree = "<group>"; };
+		E1CDF72427DC8576006AEF33 /* TextArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextArea.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +179,7 @@
 		E1CDF6EE27DC66E2006AEF33 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				E1CDF71F27DC843B006AEF33 /* UploadTweet */,
 				E1CDF6F227DC6706006AEF33 /* Components */,
 				E1CDF71227DC792F006AEF33 /* SideMenu */,
 				E1CDF70027DC6E50006AEF33 /* Profile */,
@@ -215,6 +220,7 @@
 			children = (
 				E1CDF70F27DC7702006AEF33 /* Users */,
 				E1CDF6F727DC67C5006AEF33 /* Tweets */,
+				E1CDF72427DC8576006AEF33 /* TextArea.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -346,6 +352,30 @@
 			children = (
 				E1CDF71527DC7955006AEF33 /* SideMenuView.swift */,
 				E1CDF71D27DC8098006AEF33 /* SideMenuOptionRowView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E1CDF71F27DC843B006AEF33 /* UploadTweet */ = {
+			isa = PBXGroup;
+			children = (
+				E1CDF72127DC844E006AEF33 /* Views */,
+				E1CDF72027DC8444006AEF33 /* VIewModels */,
+			);
+			path = UploadTweet;
+			sourceTree = "<group>";
+		};
+		E1CDF72027DC8444006AEF33 /* VIewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = VIewModels;
+			sourceTree = "<group>";
+		};
+		E1CDF72127DC844E006AEF33 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E1CDF72227DC8461006AEF33 /* NewTweetView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -490,7 +520,9 @@
 				E1CDF6C327DC6559006AEF33 /* TwitterCloneApp.swift in Sources */,
 				E1CDF70227DC6E6F006AEF33 /* ExploreView.swift in Sources */,
 				E1CDF71A27DC7973006AEF33 /* SideMenuViewModel.swift in Sources */,
+				E1CDF72527DC8576006AEF33 /* TextArea.swift in Sources */,
 				E1CDF71127DC770F006AEF33 /* UserRowView.swift in Sources */,
+				E1CDF72327DC8461006AEF33 /* NewTweetView.swift in Sources */,
 				E1CDF71E27DC8098006AEF33 /* SideMenuOptionRowView.swift in Sources */,
 				E1CDF6FC27DC6DA2006AEF33 /* MainTabView.swift in Sources */,
 				E1CDF70427DC6E7F006AEF33 /* NotificationsView.swift in Sources */,
