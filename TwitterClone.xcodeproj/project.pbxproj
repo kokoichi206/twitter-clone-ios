@@ -46,6 +46,8 @@
 		E1CDF74A27DCBE2E006AEF33 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CDF74927DCBE2E006AEF33 /* UserService.swift */; };
 		E1CDF74C27DCBFFD006AEF33 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CDF74B27DCBFFD006AEF33 /* User.swift */; };
 		E1CDF74F27DCC760006AEF33 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = E1CDF74E27DCC760006AEF33 /* Kingfisher */; };
+		E1CDF75127DCCEB6006AEF33 /* ExplorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CDF75027DCCEB6006AEF33 /* ExplorViewModel.swift */; };
+		E1CDF75327DCD17A006AEF33 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CDF75227DCD17A006AEF33 /* SearchBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +105,8 @@
 		E1CDF74627DCB7FE006AEF33 /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
 		E1CDF74927DCBE2E006AEF33 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		E1CDF74B27DCBFFD006AEF33 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		E1CDF75027DCCEB6006AEF33 /* ExplorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorViewModel.swift; sourceTree = "<group>"; };
+		E1CDF75227DCD17A006AEF33 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -264,6 +268,7 @@
 				E1CDF72427DC8576006AEF33 /* TextArea.swift */,
 				E1CDF72D27DC8954006AEF33 /* RoundedShape.swift */,
 				E1CDF72F27DC8C88006AEF33 /* CustomInputField.swift */,
+				E1CDF75227DCD17A006AEF33 /* SearchBar.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -352,6 +357,7 @@
 		E1CDF70D27DC76E8006AEF33 /* VIewModels */ = {
 			isa = PBXGroup;
 			children = (
+				E1CDF75027DCCEB6006AEF33 /* ExplorViewModel.swift */,
 			);
 			path = VIewModels;
 			sourceTree = "<group>";
@@ -614,6 +620,7 @@
 				E1CDF74527DCB1DB006AEF33 /* ImagePicker.swift in Sources */,
 				E1CDF6C527DC6559006AEF33 /* ContentView.swift in Sources */,
 				E1CDF6F927DC6802006AEF33 /* TweetRowView.swift in Sources */,
+				E1CDF75127DCCEB6006AEF33 /* ExplorViewModel.swift in Sources */,
 				E1CDF74727DCB7FE006AEF33 /* ImageUploader.swift in Sources */,
 				E1CDF73027DC8C88006AEF33 /* CustomInputField.swift in Sources */,
 				E1CDF70C27DC73D1006AEF33 /* TweetFilterViewModel.swift in Sources */,
@@ -624,6 +631,7 @@
 				E1CDF70227DC6E6F006AEF33 /* ExploreView.swift in Sources */,
 				E1CDF71A27DC7973006AEF33 /* SideMenuViewModel.swift in Sources */,
 				E1CDF72527DC8576006AEF33 /* TextArea.swift in Sources */,
+				E1CDF75327DCD17A006AEF33 /* SearchBar.swift in Sources */,
 				E1CDF71127DC770F006AEF33 /* UserRowView.swift in Sources */,
 				E1CDF72A27DC8825006AEF33 /* LoginView.swift in Sources */,
 				E1CDF72C27DC882C006AEF33 /* RegistrationView.swift in Sources */,
