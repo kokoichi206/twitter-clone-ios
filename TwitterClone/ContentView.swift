@@ -10,8 +10,31 @@ import SwiftUI
 struct ContentView: View {
     
     @State private var showMenu = false
+    // Share arround the project!!, but initialize somewhere
+    @EnvironmentObject var viewModel: AuthViewModel
     
     var body: some View {
+        Group {
+            // No user Logged IN
+            if viewModel.userSession == nil {
+                LoginView()
+            } else {
+                // have a looged in user
+                mainInterfaceView
+            }
+        }
+    }
+}
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
+}
+
+extension ContentView {
+    
+    var mainInterfaceView: some View {
         ZStack(alignment: .topLeading) {
             
             MainTabView()
@@ -53,11 +76,5 @@ struct ContentView: View {
             // 元ページに戻った時にサイドメニューを閉じる
             showMenu = false
         }
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
     }
 }

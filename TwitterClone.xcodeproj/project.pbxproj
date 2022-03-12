@@ -39,6 +39,7 @@
 		E1CDF73A27DC93FA006AEF33 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E1CDF73927DC93FA006AEF33 /* FirebaseFirestore */; };
 		E1CDF73C27DC93FA006AEF33 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = E1CDF73B27DC93FA006AEF33 /* FirebaseFirestoreSwift-Beta */; };
 		E1CDF73E27DC93FA006AEF33 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = E1CDF73D27DC93FA006AEF33 /* FirebaseStorage */; };
+		E1CDF74027DC9698006AEF33 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CDF73F27DC9698006AEF33 /* AuthViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +91,7 @@
 		E1CDF72F27DC8C88006AEF33 /* CustomInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputField.swift; sourceTree = "<group>"; };
 		E1CDF73227DC8E7F006AEF33 /* AuthHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthHeaderView.swift; sourceTree = "<group>"; };
 		E1CDF73427DC9324006AEF33 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		E1CDF73F27DC9698006AEF33 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -417,6 +419,7 @@
 		E1CDF72727DC8815006AEF33 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				E1CDF73F27DC9698006AEF33 /* AuthViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -595,6 +598,7 @@
 				E1CDF72C27DC882C006AEF33 /* RegistrationView.swift in Sources */,
 				E1CDF72327DC8461006AEF33 /* NewTweetView.swift in Sources */,
 				E1CDF73327DC8E7F006AEF33 /* AuthHeaderView.swift in Sources */,
+				E1CDF74027DC9698006AEF33 /* AuthViewModel.swift in Sources */,
 				E1CDF72E27DC8954006AEF33 /* RoundedShape.swift in Sources */,
 				E1CDF71E27DC8098006AEF33 /* SideMenuOptionRowView.swift in Sources */,
 				E1CDF6FC27DC6DA2006AEF33 /* MainTabView.swift in Sources */,
