@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct CustomInputField: View {
-    
+
     let imageName: String
     let placeholderText: String
     let isSecureField: Bool
     @Binding var text: String
-    
+
     var body: some View {
         VStack {
             HStack {
@@ -22,14 +22,14 @@ struct CustomInputField: View {
                     .scaledToFit()
                     .frame(width: 20, height: 20)
                     .foregroundColor(Color(.darkGray))
-                
+
                 if isSecureField {
                     SecureField(placeholderText, text: $text)
                 } else {
                     TextField(placeholderText, text: $text)
                 }
             }
-            
+
             Divider()
                 .background(Color(.darkGray))
         }

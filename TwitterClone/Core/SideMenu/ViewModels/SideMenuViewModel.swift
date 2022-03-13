@@ -12,7 +12,7 @@ enum SideMenuViewModel: Int, CaseIterable {
     case lists
     case bookmarks
     case logout
-    
+
     var title: String {
         switch self {
         case .profile: return "Profile"
@@ -21,7 +21,7 @@ enum SideMenuViewModel: Int, CaseIterable {
         case .logout: return "Logout"
         }
     }
-    
+
     var imageName: String {
         switch self {
         case .profile: return "person"

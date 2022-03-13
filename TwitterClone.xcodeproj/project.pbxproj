@@ -516,6 +516,7 @@
 				E1CDF6BB27DC6559006AEF33 /* Sources */,
 				E1CDF6BC27DC6559006AEF33 /* Frameworks */,
 				E1CDF6BD27DC6559006AEF33 /* Resources */,
+				E15A14D827DDFACA000D0D5E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -642,6 +643,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E15A14D827DDFACA000D0D5E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if type \"/opt/homebrew/bin/swiftlint\"  > /dev/null 2>&1; then\n## format autocorrect\n/opt/homebrew/bin/swiftlint --fix --format\n## format check\n/opt/homebrew/bin/swiftlint\nelif type \"/usr/local/bin/swiftlint\" > /dev/null 2>&1; then\n## format autocorrect\n/usr/local/bin/swiftlint --fix --format\n## format check\n/usr/local/bin/swiftlint\nelse\n  echo \"swiftlint is not installed.\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E1CDF6BB27DC6559006AEF33 /* Sources */ = {

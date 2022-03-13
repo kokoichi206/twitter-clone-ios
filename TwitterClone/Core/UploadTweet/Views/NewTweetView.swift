@@ -9,13 +9,13 @@ import SwiftUI
 import Kingfisher
 
 struct NewTweetView: View {
-    
+
     @State private var caption = ""
     // 全画面表示をコントロールするもの
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var authViewModel: AuthViewModel
     @ObservedObject var viewModel = UploadTweetViewModel()
-    
+
     var body: some View {
         VStack {
             HStack {
@@ -27,7 +27,7 @@ struct NewTweetView: View {
                 }
 
                 Spacer()
-                
+
                 Button {
                     viewModel.uploadTweet(withCaption: caption)
                 } label: {
@@ -41,7 +41,7 @@ struct NewTweetView: View {
                 }
             }
             .padding()
-            
+
             HStack(alignment: .top) {
                 if let user = authViewModel.currentUser {
                     KFImage(URL(string: user.profileImageUrl))
@@ -50,7 +50,7 @@ struct NewTweetView: View {
                         .clipShape(Circle())
                         .frame(width: 64, height: 64)
                 }
-                
+
                 TextArea("What's happening?", text: $caption)
             }
             .padding()
