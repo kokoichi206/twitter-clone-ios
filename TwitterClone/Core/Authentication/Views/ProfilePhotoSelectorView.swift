@@ -8,17 +8,17 @@
 import SwiftUI
 
 struct ProfilePhotoSelectorView: View {
-    
+
     @State private var showImagePicker = false
     @State private var selectedImage: UIImage?  // UIKit
     @State private var profileImage: Image?     // SwiftUI
     @EnvironmentObject var viewModel: AuthViewModel
-    
+
     var body: some View {
         VStack {
             AuthHeaderView(title1: "Setup account",
                            title2: "Add a profile photo")
-            
+
             Button {
                 showImagePicker.toggle()
             } label: {
@@ -36,7 +36,7 @@ struct ProfilePhotoSelectorView: View {
                 ImagePicker(selectedImage: $selectedImage)
             }
             .padding(.top, 44)
-            
+
             if let selectedImage = selectedImage {
                 Button {
                     print("DEBUG: Finish registering user..")
@@ -52,12 +52,12 @@ struct ProfilePhotoSelectorView: View {
                 }
                 .shadow(color: .gray.opacity(0.5), radius: 10, x: 0, y: 0)
             }
-            
+
             Spacer()
         }
         .ignoresSafeArea()
     }
-    
+
     func loadImage() {
         guard let selectedImage = selectedImage else { return }
         // convert uikit image to swiftui image
@@ -69,7 +69,7 @@ struct ProfilePhotoSelectorView: View {
 private struct ProfileImageModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
-    //                    .renderingMode(.template)
+            //                    .renderingMode(.template)
             .scaledToFit()
             .frame(width: 180, height: 180)
             .clipShape(Circle())

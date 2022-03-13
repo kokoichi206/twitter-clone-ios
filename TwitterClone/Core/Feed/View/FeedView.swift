@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct FeedView: View {
-    
+
     @State private var showNewTweetView = false
     @ObservedObject var viewModel = FeedViewModel()
-    
+
     var body: some View {
-        
+
         ZStack(alignment: .bottomTrailing) {
             ScrollView {
                 LazyVStack {
@@ -23,7 +23,7 @@ struct FeedView: View {
                     }
                 }
             }
-            
+
             Button {
                 showNewTweetView.toggle()
             } label: {

@@ -9,11 +9,11 @@ import SwiftUI
 import Kingfisher
 
 struct ContentView: View {
-    
+
     @State private var showMenu = false
     // Share arround the project!!, but initialize somewhere
     @EnvironmentObject var viewModel: AuthViewModel
-    
+
     var body: some View {
         Group {
             // No user Logged IN
@@ -34,13 +34,13 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 extension ContentView {
-    
+
     var mainInterfaceView: some View {
         ZStack(alignment: .topLeading) {
-            
+
             MainTabView()
                 .navigationBarHidden(showMenu)
-            
+
             if showMenu {
                 ZStack {
                     Color(.black).opacity(showMenu ? 0.25 : 0.0)
@@ -52,7 +52,7 @@ extension ContentView {
                 }
                 .ignoresSafeArea()
             }
-            
+
             // After goes on Top
             SideMenuView()
                 .frame(width: 300)
