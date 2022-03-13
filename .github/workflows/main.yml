@@ -10,7 +10,7 @@ jobs:
   check-version:
     uses: kokoichi206/twitter-clone-ios/.github/workflows/check-version.yml@71b6a24df5f359264192533d5ce30b1c1bc71e74
 
-  build:
+  build-and-test:
     needs: [ check-version ]
     runs-on: macos-latest
 
