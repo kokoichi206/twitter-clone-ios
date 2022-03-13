@@ -18,6 +18,47 @@ jobs:
         with:
           fetch-depth: 0 # 0 means all branches
 
+      - name: Check if all MARKETING_VERSION are same
+        id: check-all-version
+        run: |
+          git checkout ${GITHUB_BASE_REF}
+          # check the file
+          VERSION="$(cat ${FILE_PATH} | grep MARKETING_VERSION | head -n1 | sed -E 's@.*= (.*);@\1@')"
+
+          if [ -z "$VERSION" ]; then
+            exit 1
+          fi
+          while read line
+          do
+            if [[ "$line" =~ 's@.*= (.*);@\1@' ]]; then
+              if [[ "${BASH_REMATCH[1]}" != "$VERSION" ]]; then
+                exit 1
+              fi
+            fi
+          done < "$FILE_PATH"
+          echo "::set-output name=version::$(echo ${VERSION})"
+
+      - name: Outputs when diff found
+        if: failure() && steps.check-all-version.outcome == 'failure'
+        uses: actions/github-script@v5
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const output = `### CI/CD Results
+            Hello, I'm kokoichi 👋
+            
+            Your MARKETING_VERSIONs in TwitterClone.xcodeproj/project.pbxproj are not same.
+            Please check.
+            
+            see more https://github.com/kokoichi206/twitter-clone-ios/blob/issue/3/scripts/version_update.sh
+            `;
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: output
+            })
+
       - name: Get version of BASE_REF
         id: version-base-ref
         run: |
