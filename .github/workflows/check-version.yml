@@ -1,0 +1,50 @@
+name: Version check
+
+on:
+  workflow_call:
+
+# バージョン値は TwitterClone.xcodeproj/project.pbxproj に以下の形式で記述されている
+#             MARKETING_VERSION = 1.0.1;
+
+jobs:
+  # exit 1 if version is NOT updated.
+  version-checker:
+    runs-on: ubuntu-20.04
+    env:
+      FILE_PATH: TwitterClone.xcodeproj/project.pbxproj
+    steps:
+      - name: Check out
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # 0 means all branches
+
+      - name: Get version of BASE_REF
+        id: version-base-ref
+        run: |
+          git checkout ${GITHUB_BASE_REF}
+          # check the file
+          VERSION="$(cat ${FILE_PATH} | grep MARKETING_VERSION | head -n1 | sed -E 's@.*= (.*);@\1@')"
+
+          if [ -z "$VERSION" ]; then
+            exit 1
+          fi
+          echo "::set-output name=version::$(echo ${VERSION})"
+      - name: Get version of HEAD_REF
+        id: version-head-ref
+        run: |
+          git checkout ${GITHUB_HEAD_REF}
+          # check the file
+          VERSION="$(cat ${FILE_PATH} | grep MARKETING_VERSION | head -n1 | sed -E 's@.*= (.*);@\1@')"
+
+          if [ -z "$VERSION" ]; then
+            exit 1
+          fi
+          echo "::set-output name=version::$(echo ${VERSION})"
+      - name: Check whether version is updated
+        run: |
+          base="${{ steps.version-base-ref.outputs.version }}"
+          head="${{ steps.version-head-ref.outputs.version }}"
+          if [[ "$base" == "$head" ]]; then
+            echo "Version is not updated!"
+            exit 1
+          fi
