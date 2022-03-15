@@ -1,4 +1,4 @@
-#!/bin/bash -en
+#!/bin/bash
 #
 # Update CURRENT_PROJECT_VERSION if needed
 # Force to update versions of ALL packages (main, test, uitest)
@@ -11,9 +11,17 @@
 #   0. update version of your 'main' project in xcode
 #   1. bash version_update.sh
 #
-set -e
+set -eu
 
-PROGRAM=$(basename "$0")
+# MAYBE: Get these values from arguments ?
+# ==================== CONFIG ====================
+# if you wanna update from 1.2.0 to 2.0.0, set to true
+IS_MAJOR_UPDATE=false
+# if you wanna update from 1.2.4 to 1.3.0, set to true
+IS_MINOR_UPDATE=false
+# ==================== ====== ====================
+
+PROGRAM="$(basename "$0")"
 FILE_NAME="TwitterClone.xcodeproj/project.pbxproj"
 BACKUP_FILE_NAME="${FILE_NAME}.${PROGRAM}.backup"
 # make a backup just in case
@@ -21,7 +29,7 @@ cp "${FILE_NAME}" "${BACKUP_FILE_NAME}"
 
 function recover_from_backup() {
     EXIT_CODE="$?"
-    if [[ "$EXIT_CODE" > 0 ]]; then
+    if [[ "$EXIT_CODE" -gt 0 ]]; then
         echo "Something went wrong."
         rm "${FILE_NAME}"
         mv "${BACKUP_FILE_NAME}" "${FILE_NAME}"
@@ -39,16 +47,24 @@ function recover_from_backup() {
 # ERR is special feature to bash
 trap recover_from_backup EXIT
 
-# e.g) TRUE_VERSION: 1.0.1
-TRUE_VERSION="$(cat ${FILE_NAME} | grep MARKETING_VERSION | head -n1 | sed -E 's@.*= (.*);@\1@')"
-CURRENT_PROJECT_VERSION="$(echo ${TRUE_VERSION} | awk -F'.' '{print $1*10000 + $2*100 + $3}')"
+# e.g) CURRENT_VERSION: 1.0.1
+CURRENT_VERSION="$(cat "${FILE_NAME}" | grep MARKETING_VERSION | head -n1 | sed -E 's@.*= (.*);@\1@')"
+
+if [[ "${IS_MAJOR_UPDATE}" == "true" ]]; then
+    NEXT_VERSION="$(echo "${CURRENT_VERSION}" | awk -F'.' -v OFS='.' '{print ($1+1), 0, 0}' )"
+elif [[ "${IS_MINOR_UPDATE}" == "true" ]]; then
+    NEXT_VERSION="$(echo "${CURRENT_VERSION}" | awk -F'.' -v OFS='.' '{print $1, ($2+1), 0}' )"
+else
+    NEXT_VERSION="$(echo "${CURRENT_VERSION}" | awk -F'.' -v OFS='.' '{print $1, $2, ($3+1)}' )"
+fi
+echo "NEW version: $NEXT_VERSION"
 
 sed -i -e \
-    "s@MARKETING_VERSION = .*;@MARKETING_VERSION = ${TRUE_VERSION};@g" \
+    "s@MARKETING_VERSION = .*;@MARKETING_VERSION = "${NEXT_VERSION}";@g" \
     "${FILE_NAME}"
 
 # e.g) CURRENT_PROJECT_VERSION: 10001 <- 1*10000 + 0*100 + 1
-CURRENT_PROJECT_VERSION="$(echo ${TRUE_VERSION} | awk -F'.' '{print $1*10000 + $2*100 + $3}')"
+CURRENT_PROJECT_VERSION="$(echo "${NEXT_VERSION}" | awk -F'.' '{print $1*10000 + $2*100 + $3}')"
 sed -i -e \
-    "s@CURRENT_PROJECT_VERSION = .*;@CURRENT_PROJECT_VERSION = ${CURRENT_PROJECT_VERSION};@g" \
+    "s@CURRENT_PROJECT_VERSION = .*;@CURRENT_PROJECT_VERSION = "${CURRENT_PROJECT_VERSION}";@g" \
     "${FILE_NAME}"
