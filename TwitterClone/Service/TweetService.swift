@@ -7,7 +7,23 @@
 
 import Firebase
 
-struct TweetService {
+protocol TweetServiceProtocol {
+    func uploadTweet(caption: String, completion: @escaping(Bool) -> Void)
+
+    func fetchTweets(completion: @escaping([Tweet]) -> Void)
+
+    func fetchTweets(forUid uid: String, completion: @escaping([Tweet]) -> Void)
+
+    func likeTweet(_ tweet: Tweet, completion: @escaping() -> Void)
+
+    func unLikeTweet(_ tweet: Tweet, completion: @escaping() -> Void)
+
+    func checkIfUserLikeTweet(_ tweet: Tweet, completion: @escaping(Bool) -> Void)
+
+    func fetchLikedTweets(forUid uid: String, completion: @escaping([Tweet]) -> Void)
+}
+
+struct TweetService: TweetServiceProtocol {
 
     func uploadTweet(caption: String, completion: @escaping(Bool) -> Void) {
         guard let uid = Auth.auth().currentUser?.uid else { return }

@@ -8,7 +8,13 @@
 import Firebase
 import FirebaseFirestoreSwift
 
-struct UserService {
+protocol UserServiceProtocol {
+    func fetchUser(withUid uid: String, completion: @escaping(User) -> Void)
+
+    func fetchUsers(completion: @escaping([User]) -> Void)
+}
+
+struct UserService: UserServiceProtocol {
 
     func fetchUser(withUid uid: String, completion: @escaping(User) -> Void) {
         print("DEBUG: Fetch user info..")
