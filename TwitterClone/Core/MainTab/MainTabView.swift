@@ -19,6 +19,8 @@ struct MainTabView: View {
                 }
                 .tabItem {
                     Image(systemName: "house")
+                        .accessibilityIdentifier("feed_view_link")
+                    //                        .accessibilityIdentifier(TestTags.feedViewLink)
                 }.tag(0)
 
             ExploreView()
@@ -28,6 +30,7 @@ struct MainTabView: View {
                 .tabItem {
                     Image(systemName: "magnifyingglass")
                 }.tag(1)
+                .accessibilityIdentifier("explor_view")
 
             NotificationsView()
                 .onTapGesture {
