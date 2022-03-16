@@ -20,8 +20,8 @@ jobs:
       run: swift test -v
 
     - name: UITests
-      run: xcodebuild test -project XCTestExample.xcodeproj/ \
-          -scheme XCTestExample -resultBundlePath TestResults \
+      run: xcodebuild test -project TwitterClone.xcodeproj/ \
+          -scheme TwitterCloneUITests -resultBundlePath TestResults \
           -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 13"
     
     - name: Check dirs
