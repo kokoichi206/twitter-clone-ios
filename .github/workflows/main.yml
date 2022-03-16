@@ -19,6 +19,23 @@ jobs:
     - name: Run tests
       run: swift test -v
 
+    - name: UITests
+      run: xcodebuild test -project XCTestExample.xcodeproj/ \
+          -scheme XCTestExample -resultBundlePath TestResults \
+          -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 13"
+    
+    - name: Check dirs
+      run: ls
+
+    - name: Archive test artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: test-artifacts
+        path: |
+          ~/Library/Developer/Xcode/DerivedData/*
+          ~/Library/Developer/Xcode/DerivedData/*/Logs/Test/*.xcresult
+        if: always()
+
   swift-lint:
     needs: [ check-version ]
     runs-on: macos-11
