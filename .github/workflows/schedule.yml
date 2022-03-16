@@ -1,0 +1,56 @@
+name: Run tests every day
+
+on:
+  schedule:
+    # 日本時間24時00分
+    - cron: '0 15 * * *'
+  push:
+    branches: [ issue/8 ]
+
+jobs:
+  build-and-test:
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    # - name: Build
+    #   run: swift build -v
+    # - name: Run tests
+    #   run: swift test -v
+
+    - name: Select Xcode version
+      # run: sudo xcode-select -s '/Applications/Xcode_11.3.app/Contents/Developer'
+      run: which xcodebuild
+    - name: Show Xcode version
+      run: xcodebuild -version
+      # Run build
+    - name: Build
+      run: xcodebuild
+            -scheme TwitterClone
+            -sdk iphonesimulator
+            -configuration Debug
+            build
+      # Run unit test
+    - name: Run tests
+      run: xcodebuild
+            -scheme TwitterClone
+            -sdk iphonesimulator
+            -destination 'platform=iOS Simulator,name=iPhone 11 Pro,OS=14.0'
+            clean test
+
+    - name: Archive test artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: test-artifacts
+        path: |
+          ~/Library/Developer/Xcode/DerivedData/*
+          ~/Library/Developer/Xcode/DerivedData/*/Logs/Test/*.xcresult
+        if: always()
+
+  swift-lint:
+    runs-on: macos-11
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Lint code using SwiftLint
+        run: swiftlint lint --reporter github-actions-logging
