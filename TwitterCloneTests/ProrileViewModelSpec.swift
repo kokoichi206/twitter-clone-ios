@@ -25,6 +25,6 @@ class ProrileViewModelSpec: XCTestCase {
         viewModel.fetchUserTweets()
 
         viewModel.fetchUserTweets()
-        XCTAssertFalse(viewModel.tweets.isEmpty)
+        XCTAssertTrue(viewModel.tweets.isEmpty)
     }
 }
