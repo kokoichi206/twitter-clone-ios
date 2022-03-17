@@ -13,29 +13,28 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    # - name: Build
-    #   run: swift build -v
-    # - name: Run tests
-    #   run: swift test -v
+    - name: Build
+      run: swift build -v
+    - name: Run tests
+      run: swift test -v
 
-    - name: Select Xcode version
+    - name: Show Xcode path
       # run: sudo xcode-select -s '/Applications/Xcode_11.3.app/Contents/Developer'
       run: which xcodebuild
     - name: Show Xcode version
       run: xcodebuild -version
-      # Run build
-    - name: Build
-      run: xcodebuild
-            -scheme TwitterClone
-            -sdk iphonesimulator
-            -configuration Debug
-            build
+    # - name: Build
+    #   run: xcodebuild
+    #         -scheme TwitterClone
+    #         -sdk iphonesimulator
+    #         -configuration Debug
+    #         build
       # Run unit test
     - name: Run tests
       run: xcodebuild
             -scheme TwitterClone
             -sdk iphonesimulator
-            -destination 'platform=iOS Simulator,name=iPhone 11 Pro,OS=14.0'
+            -destination 'platform=iOS Simulator,name=iPhone 11 Pro'
             clean test
 
     - name: Archive test artifacts
