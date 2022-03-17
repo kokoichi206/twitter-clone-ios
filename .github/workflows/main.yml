@@ -14,23 +14,18 @@ jobs:
     runs-on: macos-latest
     needs: [ check-version ]
     steps:
-    - uses: actions/checkout@v2
-    - name: Build
-      run: swift build -v
-    - name: Run tests
-      run: swift test -v
+      - uses: actions/checkout@v2
+      - name: Decode GoogleService
+        run: |
+          echo ${{ secrets.GOOGLE_SERVICE }} | base64 --decode > ./GoogleService-Info.plist
+          echo ${{ secrets.GOOGLE_SERVICE }} | base64 --decode > ./TwitterCloneUITests/GoogleService-Info.plist
 
-    - name: Decode GoogleService
-      run: |
-        echo ${{ secrets.GOOGLE_SERVICE }} | base64 --decode > ./GoogleService-Info.plist
-        echo ${{ secrets.GOOGLE_SERVICE }} | base64 --decode > ./TwitterCloneUITests/GoogleService-Info.plist
-
-    - name: Build
-      run: xcodebuild
-            -scheme TwitterClone
-            -sdk iphonesimulator
-            -configuration Debug
-            build
+      - name: Build
+        run: xcodebuild
+              -scheme TwitterClone
+              -sdk iphonesimulator
+              -configuration Debug
+              build
       - name: Store cache for later upload
         uses: actions/cache@v2
         with:
@@ -45,13 +40,19 @@ jobs:
     runs-on: macos-latest
     needs: [ check-version ]
     steps:
-    - name: Run tests
-      run: xcodebuild
-            -scheme TwitterClone
-            -sdk iphonesimulator
-            -destination 'platform=iOS Simulator,name=iPhone 11 Pro'
-            clean test
-    steps:
+      - uses: actions/checkout@v2
+      - name: Decode GoogleService
+        run: |
+          echo ${{ secrets.GOOGLE_SERVICE }} | base64 --decode > ./GoogleService-Info.plist
+          echo ${{ secrets.GOOGLE_SERVICE }} | base64 --decode > ./TwitterCloneUITests/GoogleService-Info.plist
+
+      - name: Run tests
+        run: xcodebuild
+              -scheme TwitterClone
+              -sdk iphonesimulator
+              -destination 'platform=iOS Simulator,name=iPhone 11 Pro'
+              clean test
+
       - name: Store cache for upload
         uses: actions/cache@v2
         with:
@@ -64,16 +65,7 @@ jobs:
   deploy-artifacts:
     runs-on: macos-latest
     needs: [ build, tests ]
-    steps:
-      - name: Restore cache for upload build logs
-        uses: actions/cache@v2
-        with:
-          path: |
-            ~/Library/Developer/Xcode/DerivedData/*/Logs/Build/*
-            ~/Library/Developer/Xcode/DerivedData/*/Build/Products
-          key: ${{ runner.os }}-build-${{ hashFiles('./TwitterClone.xcodeproj/project.pbxproj') }}
-          restore-keys: |
-            ${{ runner.os }}-build-
+    if: always()
     steps:
       - name: Restore cache for upload test logs
         uses: actions/cache@v2
@@ -94,7 +86,7 @@ jobs:
         if: always()
 
   swift-lint:
-    runs-on: macos-11
+    runs-on: macos-latest
     needs: [ check-version ]
     steps:
       - uses: actions/checkout@v2
