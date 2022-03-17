@@ -26,7 +26,7 @@ jobs:
               -sdk iphonesimulator
               -configuration Debug
               build
-      - name: Store cache for later upload
+      - name: Store cache for later uploading
         uses: actions/cache@v2
         with:
           path: |
@@ -53,7 +53,7 @@ jobs:
               -destination 'platform=iOS Simulator,name=iPhone 11 Pro'
               clean test
 
-      - name: Store cache for upload
+      - name: Store cache for uploading
         uses: actions/cache@v2
         with:
           path: |
@@ -62,12 +62,21 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-tests-
 
-  deploy-artifacts:
+  deploy:
     runs-on: macos-latest
     needs: [ build, tests ]
-    if: always()
+    if: ${{ always() }}
     steps:
-      - name: Restore cache for upload test logs
+      - name: Restore cache for uploading build
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/Library/Developer/Xcode/DerivedData/*/Logs/Build/*
+            ~/Library/Developer/Xcode/DerivedData/*/Build/Products
+          key: ${{ runner.os }}-build-${{ hashFiles('./TwitterClone.xcodeproj/project.pbxproj') }}
+          restore-keys: |
+            ${{ runner.os }}-build-
+      - name: Restore cache for uploading test logs
         uses: actions/cache@v2
         with:
           path: |
@@ -75,15 +84,16 @@ jobs:
           key: ${{ runner.os }}-tests-${{ hashFiles('./TwitterClone.xcodeproj/project.pbxproj') }}
           restore-keys: |
             ${{ runner.os }}-tests-
-    - name: Archive test artifacts
-      uses: actions/upload-artifact@v2
-      with:
-        name: test-artifacts
-        path: |
-          ~/Library/Developer/Xcode/DerivedData/*/Logs/Build/*
-          ~/Library/Developer/Xcode/DerivedData/*/Build/Products
-          ~/Library/Developer/Xcode/DerivedData/*/Logs/Test
-        if: always()
+
+      - name: Archive to artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: Artifacts
+          path: |
+            ~/Library/Developer/Xcode/DerivedData/*/Logs/Build/*
+            ~/Library/Developer/Xcode/DerivedData/*/Build/Products
+            ~/Library/Developer/Xcode/DerivedData/*/Logs/Test
+          if: always()
 
   swift-lint:
     runs-on: macos-latest
