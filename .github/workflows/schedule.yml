@@ -4,13 +4,10 @@ on:
   schedule:
     # 日本時間24時00分
     - cron: '0 15 * * *'
-  push:
-    branches: [ issue/8 ]
 
 jobs:
-  build-and-test:
+  build:
     runs-on: macos-latest
-
     steps:
     - uses: actions/checkout@v2
     - name: Build
@@ -23,32 +20,71 @@ jobs:
         echo ${{ secrets.GOOGLE_SERVICE }} | base64 --decode > ./GoogleService-Info.plist
         echo ${{ secrets.GOOGLE_SERVICE }} | base64 --decode > ./TwitterCloneUITests/GoogleService-Info.plist
 
-    # - name: Show Xcode path
-    #   # run: sudo xcode-select -s '/Applications/Xcode_11.3.app/Contents/Developer'
-    #   run: which xcodebuild
-    # - name: Show Xcode version
-    #   run: xcodebuild -version
-    # - name: Build
-    #   run: xcodebuild
-    #         -scheme TwitterClone
-    #         -sdk iphonesimulator
-    #         -configuration Debug
-    #         build
-      # Run unit test
+    - name: Build
+      run: xcodebuild
+            -scheme TwitterClone
+            -sdk iphonesimulator
+            -configuration Debug
+            build
+      - name: Store cache for later upload
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/Library/Developer/Xcode/DerivedData/*/Logs/Build/*
+            ~/Library/Developer/Xcode/DerivedData/*/Build/Products
+          key: ${{ runner.os }}-build-${{ hashFiles('./TwitterClone.xcodeproj/project.pbxproj') }}
+          restore-keys: |
+            ${{ runner.os }}-build-
+
+  tests:
+    runs-on: macos-latest
+    steps:
     - name: Run tests
       run: xcodebuild
             -scheme TwitterClone
             -sdk iphonesimulator
             -destination 'platform=iOS Simulator,name=iPhone 11 Pro'
             clean test
+    steps:
+      - name: Store cache for upload
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/Library/Developer/Xcode/DerivedData/*/Logs/Test
+          key: ${{ runner.os }}-tests-${{ hashFiles('./TwitterClone.xcodeproj/project.pbxproj') }}
+          restore-keys: |
+            ${{ runner.os }}-tests-
 
+  deploy-artifacts:
+    needs: [ build, tests ]
+    runs-on: macos-latest
+    steps:
+      - name: Restore cache for upload build logs
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/Library/Developer/Xcode/DerivedData/*/Logs/Build/*
+            ~/Library/Developer/Xcode/DerivedData/*/Build/Products
+          key: ${{ runner.os }}-build-${{ hashFiles('./TwitterClone.xcodeproj/project.pbxproj') }}
+          restore-keys: |
+            ${{ runner.os }}-build-
+    steps:
+      - name: Restore cache for upload test logs
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/Library/Developer/Xcode/DerivedData/*/Logs/Test
+          key: ${{ runner.os }}-tests-${{ hashFiles('./TwitterClone.xcodeproj/project.pbxproj') }}
+          restore-keys: |
+            ${{ runner.os }}-tests-
     - name: Archive test artifacts
       uses: actions/upload-artifact@v2
       with:
         name: test-artifacts
         path: |
-          ~/Library/Developer/Xcode/DerivedData/*
-          ~/Library/Developer/Xcode/DerivedData/*/Logs/Test/*.xcresult
+          ~/Library/Developer/Xcode/DerivedData/*/Logs/Build/*
+          ~/Library/Developer/Xcode/DerivedData/*/Build/Products
+          ~/Library/Developer/Xcode/DerivedData/*/Logs/Test
         if: always()
 
   swift-lint:
