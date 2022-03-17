@@ -11,12 +11,15 @@ class ProfileViewModel: ObservableObject {
 
     @Published var tweets = [Tweet]()
     @Published var likedTweets = [Tweet]()
-    private let service = TweetService()
-    private let userService = UserService()
+    private let service: TweetServiceProtocol
+    private let userService: UserServiceProtocol
     let user: User
 
-    init(user: User) {
+    // DI
+    init(user: User, service: TweetServiceProtocol = TweetService(), userService: UserServiceProtocol = UserService()) {
         self.user = user
+        self.service = service
+        self.userService = userService
         self.fetchUserTweets()
         self.fetchLikedTweets()
     }

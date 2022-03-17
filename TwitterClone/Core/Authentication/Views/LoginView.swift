@@ -25,11 +25,13 @@ struct LoginView: View {
                                  placeholderText: "Email",
                                  isSecureField: false,
                                  text: $email)
+                    .accessibilityIdentifier(TestTags.emailInSignIn)
 
                 CustomInputField(imageName: "lock",
                                  placeholderText: "Password",
                                  isSecureField: true,
                                  text: $password)
+                    .accessibilityIdentifier(TestTags.passwordInSignIn)
             }
             .padding(.horizontal, 32)
             .padding(.top, 44)

@@ -2,28 +2,104 @@ name: Swift
 
 on:
   pull_request:
-    branches: [ main ]
+    paths-ignore:
+      - 'docs/**'
+      - '**.md'
 
 jobs:
   check-version:
     uses: kokoichi206/twitter-clone-ios/.github/workflows/check-version.yml@5f644c769d031eefeb4c63ba6a99bb267c47fc7f
 
-  build-and-test:
-    needs: [ check-version ]
+  build:
     runs-on: macos-latest
-
-    steps:
-    - uses: actions/checkout@v2
-    - name: Build
-      run: swift build -v
-    - name: Run tests
-      run: swift test -v
-
-  swift-lint:
     needs: [ check-version ]
-    runs-on: macos-11
     steps:
       - uses: actions/checkout@v2
-      
+      - name: Decode GoogleService
+        run: |
+          echo ${{ secrets.GOOGLE_SERVICE }} | base64 --decode > ./GoogleService-Info.plist
+          echo ${{ secrets.GOOGLE_SERVICE }} | base64 --decode > ./TwitterCloneUITests/GoogleService-Info.plist
+
+      - name: Build
+        run: xcodebuild
+              -scheme TwitterClone
+              -sdk iphonesimulator
+              -configuration Debug
+              build
+      - name: Store cache for later uploading
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/Library/Developer/Xcode/DerivedData/*/Logs/Build/*
+            ~/Library/Developer/Xcode/DerivedData/*/Build/Products
+          key: ${{ runner.os }}-build-${{ hashFiles('./TwitterClone.xcodeproj/project.pbxproj') }}
+          restore-keys: |
+            ${{ runner.os }}-build-
+
+  tests:
+    runs-on: macos-latest
+    needs: [ check-version ]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Decode GoogleService
+        run: |
+          echo ${{ secrets.GOOGLE_SERVICE }} | base64 --decode > ./GoogleService-Info.plist
+          echo ${{ secrets.GOOGLE_SERVICE }} | base64 --decode > ./TwitterCloneUITests/GoogleService-Info.plist
+
+      - name: Run tests
+        run: xcodebuild
+              -scheme TwitterClone
+              -sdk iphonesimulator
+              -destination 'platform=iOS Simulator,name=iPhone 11 Pro'
+              clean test
+
+      - name: Store cache for uploading
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/Library/Developer/Xcode/DerivedData/*/Logs/Test
+          key: ${{ runner.os }}-tests-${{ hashFiles('./TwitterClone.xcodeproj/project.pbxproj') }}
+          restore-keys: |
+            ${{ runner.os }}-tests-
+
+  deploy:
+    runs-on: macos-latest
+    needs: [ build, tests ]
+    if: ${{ always() }}
+    steps:
+      - name: Restore cache for uploading build
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/Library/Developer/Xcode/DerivedData/*/Logs/Build/*
+            ~/Library/Developer/Xcode/DerivedData/*/Build/Products
+          key: ${{ runner.os }}-build-${{ hashFiles('./TwitterClone.xcodeproj/project.pbxproj') }}
+          restore-keys: |
+            ${{ runner.os }}-build-
+      - name: Restore cache for uploading test logs
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/Library/Developer/Xcode/DerivedData/*/Logs/Test
+          key: ${{ runner.os }}-tests-${{ hashFiles('./TwitterClone.xcodeproj/project.pbxproj') }}
+          restore-keys: |
+            ${{ runner.os }}-tests-
+
+      - name: Archive to artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: Artifacts
+          path: |
+            ~/Library/Developer/Xcode/DerivedData/*/Logs/Build/*
+            ~/Library/Developer/Xcode/DerivedData/*/Build/Products
+            ~/Library/Developer/Xcode/DerivedData/*/Logs/Test
+          if: always()
+
+  swift-lint:
+    runs-on: macos-latest
+    needs: [ check-version ]
+    steps:
+      - uses: actions/checkout@v2
+
       - name: Lint code using SwiftLint
         run: swiftlint lint --reporter github-actions-logging
